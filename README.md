@@ -7,8 +7,9 @@ To accomplish smooth transition from one working machine to another, a data scie
 # changes to the local machine learning project directory
 $ cd dir/to/project/folder
 
-# creates an empty repo, and desinates the repo to be a machine learning type.
+# creates an empty repo
 $ hub create repo_name -ml
+# by attaching -ml, you explicitly specify the repo type to be a machine learning repository, which will benefit from ML-specific GitHub Actions, metrics trackings, result visualizaitons, cloud computes etc.
 
 > creating... [\\\\\\\\\\\\\\\\\] 100%
 > New ML repository created: git://github.com/YOUR_USER/repo_name.git, done
@@ -25,7 +26,7 @@ $ git add .
 $ git commit -m "packaged env"
 $ git push
 ```
-** During setup compiling, both ```environment.yml``` and ```requirements.txt``` will be generated and packaged into setup.py for simplicity.
+** During setup compiling, both ```environment.yml```, ```env_vars.sh```, ```requirements.txt```, etc. will be generated and packaged into setup.py for simplicity.
 
 EXAMPLE: A simple conda environment file(```environment.yml```):
 ```yaml
@@ -63,7 +64,7 @@ $ cd 'End-to-end solutions'
 Now, here are a few senarios that data scientists can run into when setting up their local environment.
 - **Reuirements met**, auto-setup a new conda envrionment locally
 - **Requirements not met**:
-    - Move to a Azure compute resource & Codespaces to continue to run the experiment (our value-add)
+    - Move to a GitHub compute & Codespaces to continue to run the experiment (our value-add)
     - Or, proceed with manual packages installation
 
 
@@ -75,19 +76,19 @@ $ python setup.py
 > This repository uses Conda environment, do you want to create a new conda environment? 
 > y/n?: y
 > Locating enviornment.yml......
-> conda nev create -f environment.yml
+> conda env create -f environment.yml
 > Setting up....
 > 21 packages installed, done.
 $ ~(env-name)$ _
 ```
 
-With Azure:
+With GitHub Compute:
 ```bash
 $ python setup.py
 > locating dependency files...
 > checking requirements...
 > ! ERROR: your machine does not meet the requirements for running (Insufficient CPU: x86 2cores)
-> Do you want to setup with Azure VM & Codespaces instead? y/n?:y
+> Do you want to setup with GitHub Compute & Codespaces instead? y/n?:y
 
 > Waiting for authentication...
 ```
@@ -99,3 +100,5 @@ $ python setup.py
 > Taking you to Visual Studio Codespaces....opening browser
 > Or alternatively, you can open link: https://codespaces.com/editor/tichx/12323asdf3
 ```
+
+
