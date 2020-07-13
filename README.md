@@ -7,9 +7,8 @@ To accomplish smooth transition from one working machine to another, a data scie
 # changes to the local machine learning project directory
 $ cd dir/to/project/folder
 
-# creates an empty repo
+# creates an empty repo, and desinates the repo to be a machine learning type.
 $ hub create repo_name -ml
-# by attaching -ml, you explicitly specify the repo type to be a machine learning repository, which will benefit from ML-specific GitHub Actions, metrics trackings, result visualizaitons, cloud computes etc.
 
 > creating... [\\\\\\\\\\\\\\\\\] 100%
 > New ML repository created: git://github.com/YOUR_USER/repo_name.git, done
@@ -26,7 +25,7 @@ $ git add .
 $ git commit -m "packaged env"
 $ git push
 ```
-** During setup compiling, both ```environment.yml```, ```env_vars.sh```, ```requirements.txt```, etc. will be generated and packaged into setup.py for simplicity.
+** During setup compiling, both ```environment.yml``` and ```requirements.txt``` will be generated and packaged into setup.py for simplicity.
 
 EXAMPLE: A simple conda environment file(```environment.yml```):
 ```yaml
@@ -64,7 +63,7 @@ $ cd 'End-to-end solutions'
 Now, here are a few senarios that data scientists can run into when setting up their local environment.
 - **Reuirements met**, auto-setup a new conda envrionment locally
 - **Requirements not met**:
-    - Move to a GitHub compute & Codespaces to continue to run the experiment (our value-add)
+    - Move to a Azure compute resource & Codespaces to continue to run the experiment (our value-add)
     - Or, proceed with manual packages installation
 
 
@@ -76,7 +75,7 @@ $ python setup.py
 > This repository uses Conda environment, do you want to create a new conda environment? 
 > y/n?: y
 > Locating enviornment.yml......
-> conda env create -f environment.yml
+> conda nev create -f environment.yml
 > Setting up....
 > 21 packages installed, done.
 $ ~(env-name)$ _
@@ -92,13 +91,27 @@ $ python setup.py
 
 > Waiting for authentication...
 ```
-![Images](img/flow.png)
+Then the user will be prompted to log in at GitHub
+
+![Images](img/step3.png)
+
+Choose an appropriate compute resource. (Ideally, we would recommend a option based on his project, the screen here is only for demo. The pricing details will be considered on another occasion.)
+
+![Images](img/step2.png)
+
+After an option is selected, the user would then choose 'agree & create' to proceed.
+
+![Images](img/step1.png)
+
+Then the user will be either directed to open a Codespace tab online, or be asked to open Visual Studio on his machine. By clicking 'Connect' he will be able to edit the code and run experiment on the GitHub Compute.
+
+![Images](img/step4.png)
+
 ```bash
 > Authenticating...
-> Azure connected.
-> Visual Studio Codespaces connected.
-> Taking you to Visual Studio Codespaces....opening browser
+> GitHub logged in...taking to GitHub Compute
+> Opening up Visual Studio Codespaces...
+> Opening browser....
 > Or alternatively, you can open link: https://codespaces.com/editor/tichx/12323asdf3
 ```
-
 
