@@ -25,6 +25,8 @@ $ git add .
 $ git commit -m "packaged env"
 $ git push
 ```
+### [metang] can we make git add/commit part of hub package-env? it's easier to have hub, the push to get the environment checked-in
+
 ** During setup compiling, both ```environment.yml``` and ```requirements.txt``` will be generated and packaged into setup.py for simplicity.
 
 EXAMPLE: A simple conda environment file(```environment.yml```):
@@ -75,7 +77,7 @@ $ python setup.py
 > This repository uses Conda environment, do you want to create a new conda environment? 
 > y/n?: y
 > Locating enviornment.yml......
-> conda nev create -f environment.yml
+> conda env create -f environment.yml
 > Setting up....
 > 21 packages installed, done.
 $ ~(env-name)$ _
@@ -99,3 +101,4 @@ $ python setup.py
 > Taking you to Visual Studio Codespaces....opening browser
 > Or alternatively, you can open link: https://codespaces.com/editor/tichx/12323asdf3
 ```
+### i am thinking if we could hide the Azure sign-in part. And only use the github as the account. We could bill customer from github account.
