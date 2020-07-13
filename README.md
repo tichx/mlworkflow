@@ -95,7 +95,7 @@ Then the user will be prompted to log in at GitHub
 
 ![Images](img/step3.png)
 
-Choose an appropriate compute resource. (Ideally, we would recommend a option based on his project, the screen here is only for demo. The pricing details will be considered on another occasion.)
+Choose an appropriate compute resource. (Ideally, we would recommend an option based on his project. The screen here is only for demo purpose. The pricing details will also be considered on another occasion.)
 
 ![Images](img/step2.png)
 
@@ -115,3 +115,96 @@ Then the user will be either directed to open a Codespace tab online, or be aske
 > Or alternatively, you can open link: https://codespaces.com/editor/tichx/12323asdf3
 ```
 
+## Senario 3
+A data scientist Sarah wants to use her framework of choice to track training, logs, and eventually commits and pushes the repo up to GitHub again for sharing and remote working.
+#### Step by step tutorial (Wine quality prediction)
+1. After Sarah has set up a working environment as illustrated in Senario 2, she then wants to run some training scripts. In this experiment, she wants to use _random forest_ tree to predict wine quality, and uses __mlflow__ to track the experiment. In her current folder, she has the following items:
+   ```
+   mlflow/examples/h2o/
+      conda.yaml
+      random_forest.ipynb
+      random_forest.py
+      wine-quality.csv
+   ```
+
+
+2. In her training code, she uses __MLflow logging API__ (it could be any popular framworks, metaflow, octostore, etc.) to log metrics and artifacts. 
+   ![image-log-metrics-artifacts](_assets/JupyterNotebookFlow/step2.png)
+
+   After finish writing the training code, she runs the entire python script by
+   ```
+   python random_forest.py
+   ```
+  
+
+3. The metrics and artifacts are stored in the specific folders under the local project folder ```mlflow/examples/h2o/mlruns/```.
+
+
+   ![image-metrics-artifacts-folder](_assets/JupyterNotebookFlow/image-metrics-artifacts-folder.png)
+
+
+4. Sarah then wants to visualize and compare different runs' results on her local dashboard. To do so, she would run in CLI ```mlflow ui``` which will then host an mlflow GUI dashboard at ```http://localhost:5000```.
+
+   ![images-local-dashboard](_assets/JupyterNotebookFlow/step4.png)
+   > Under the "Experiment" tab, she will find 5 runs that she just finished.
+
+5. After several iterations, she's satisfied with the model. Now she wants to push the project into her GitHub repo so that she can continue working on her laptop when she's back to home. 
+
+6. She then uses ```git``` to commit all the changes and pushes to GitHub. 
+
+    ```bash
+    $ git add . # or, git add path/to/file
+    $ git commit -m "some changes"
+    $ git push
+
+    > Enumerating objects: 11, done.
+    > Counting objects: 100% (11/11), done.
+    > Delta compression using up to 12 threads
+    > Compressing objects: 100% (9/9), done.
+    > Writing objects: 100% (9/9), 1.89 MiB | 944.00 KiB/s, done.
+    > Total 9 (delta 0), reused 0 (delta 0)
+    > To https://github.com/tichx/mlworkflow.git
+    > d46339e..ac8e73d  master -> master
+    ```
+
+
+7. (Optional) Then, she also wants to share the environment that the code runs in, in which case she will need to package her environment again like Senario 1 and push to GitHub. If the environment has changed, ```hub env-package``` will notify the changes and kindly remind what to be tracked. 
+
+    ```bash
+
+    # scan and generates setup file **
+    $ hub package-env 
+    > Found 3 environment files modified in /mlruns/
+        - 3 changes in /mlruns/artifacts
+        - 29383 insertions in /mlruns/experiments
+        - 12 deletions in /mlruns/metrics
+    > Do you want to package them? y/n: y
+    > done.
+
+    # lastly, add, commit, and push to GitHub
+    $ git add . 
+    $ git commit -m "packaged env"
+    $ git push
+    ``` 
+    In case of forgetting this step, she will also see a reminder on GitHub Action since any commit push is a part of automatic workflow that triggers detection of environment changes.
+
+
+
+8. From the GitHub repo, she can see all the previous local run metrics/results from the Insights tab thanks to the environment packaging.
+      - Under __Insights__ tab, she will find the highlights of 200 runs tracked by MLflow visualized here for a quick glance.
+      ![image-github-insights](_assets/JupyterNotebookFlow/screen1.png)
+      
+      - Then, jumping to __Experiments__, each experiment is shown in the grid. To investigate a specific experiement, she can click on the experiment ID, which will directs her to the deatil page.
+      ![image-github-insights](_assets/JupyterNotebookFlow/screen2.png)
+     
+      -  Here, she can customize the charts and find key information about this run.
+      ![image-github-insights](_assets/JupyterNotebookFlow/screen3.png)
+     
+      - Also, hyperameters will be documented here with the help of metadata service record.
+      ![image-github-insights](_assets/JupyterNotebookFlow/screen4.png)
+     
+      - Additionaly, an output and log page will allows her to see the experinment-specific outputs directly at the repo.
+      ![image-github-insights](_assets/JupyterNotebookFlow/screen5.png)
+     
+
+9. She can also use GitHub actions to trigger a run using the same environment on another compute target (from cloud or on-prem) and visualize results under Insights.
