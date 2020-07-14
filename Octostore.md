@@ -1,8 +1,14 @@
 
-# Scenario 1
-The Git Experience but for Data
+# Scenario 1: The Git Experience but for Data
 
-**Problem Statement**: --- (any time there’s a file in git that’s >25MB, the git process grinds to a halt)
+
+###Problem statement: data scientists face issues with storing, downloading, accessing and visualizing large data set 
+
+Examples: 
+1. Any time there’s a file in git that’s >25MB, the git process grinds to a halt
+2. There isn't a tool right now that can easily explore visualizations of large data set.
+3. Accessing data in which way is a puzzle unsolved. Whether it's from S3, Spark, or downloading from GitHub, there isn't a unified product solution to address various accessing needs.
+
 
 - Developer chooses a repo they want to work with.
     - The repo has code in it but no data
@@ -38,8 +44,8 @@ Git could be extended via ‘add-ons’ using a mechanism like this -https://git
 
 ![picture 5](images/7cad62e997b7e8d2bab5e53a09100458c1f688b55b5f75b4cb8a42cbe129bf18.png)  
 
-# Scenario 2
-A developer wants to get started with an open data set.
+# Scenario 2: A developer wants to get started with an open data set
+
 #### Pre-req:
 - User already has an account with a cloud that provides an S3-compatible blob store
 - User has already installed github_data
@@ -100,7 +106,7 @@ Locally, she’ll use simple APIs to track the experiment. In her current folder
 - The code is now ready to run
 - Octostore also can run the file (in the current python environment) and automatically convert (if necessary) the python notebook.
 - All information about the run is stored locally in:
-<PROJECT_NAME>/    runs/       <EXPERIMENT_NAME>/         <RUN_ID>/ 	    [ALL_RUN_FILES]
+<PROJECT_NAME>/   runs/      <EXPERIMENT_NAME>/        <RUN_ID>/	    [ALL_RUN_FILES]
 ![picture 11](images/7c9abf410719bcd720648055ea35393c3e71eddfbb39bf76623bd81316941d6b.png)  
 
 ![picture 12](images/84a4cedf0ce4e9b0029a72b5d05a6c200a7fea34599a3c228c20ab4b6119f2c0.png)  
