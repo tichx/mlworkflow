@@ -2,19 +2,19 @@
 A data scientist finishes his local experiments and wants to continue working on another new device, or shares his experiments with others.
 
 #### Packaging an environment has never been easier
-To accomplish smooth transition from one working machine to another, a data scientist can easily package his current environment or dependencies with ```hub``` command to auto-detect and generate setup files, and then use Git to push to the remote repository.
+To accomplish smooth transition from one working machine to another, a data scientist can easily package his current environment or dependencies with ```gh``` command to auto-detect and generate setup files, and then use Git to push to the remote repository.
 ```bash
 # changes to the local machine learning project directory
 $ cd dir/to/project/folder
 
 # creates an empty repo, and desinates the repo to be a machine learning type.
-$ hub create repo_name -ml
+$ gh create repo_name -ml
 
 > creating... [\\\\\\\\\\\\\\\\\] 100%
 > New ML repository created: git://github.com/YOUR_USER/repo_name.git, done
 
 # scan and generates setup file **
-$ hub package-env
+$ gh package-env
 
 Looking for requirements....
 Packaging into setup.py.....
@@ -168,12 +168,12 @@ A data scientist Sarah wants to use her framework of choice to track training, l
     ```
 
 
-7. (Optional) Then, she also wants to share the environment that the code runs in, in which case she will need to package her environment again like Senario 1 and push to GitHub. If the environment has changed, ```hub env-package``` will notify the changes and kindly remind what to be tracked. 
+7. (Optional) Then, she also wants to share the environment that the code runs in, in which case she will need to package her environment again like Senario 1 and push to GitHub. If the environment has changed, ```gh env-package``` will notify the changes and kindly remind what to be tracked. 
 
     ```bash
 
     # scan and generates setup file **
-    $ hub package-env 
+    $ gh package-env 
     > Found 3 environment files modified in /mlruns/
         - 3 changes in /mlruns/artifacts
         - 29383 insertions in /mlruns/experiments
